@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Vigenere</title>
+</head>
+<body>
+    <p>Plaintext</p>
+    <p><input type="text" id ="txtPlaintext" /></p>
+    <p><button id="btnEncrypt">Encrypt</button></p>
+    <p>Public Key</p>
+    <p><input type="text" id ="txtPublicKey" /></p>
+    <p>Chipertext</p>
+    <p><input type="text" id ="txtChipertext" /></p>
+    <p><button id="btnDecrypt">Decrypt</button></p>
+    <p><input type="text" id ="txtPesan" /></p>
+
+    <script src="js/key/key_generator.js"></script>
+    <script src="js/hash/sha1.js"></script>
+    <script src="js/encode/sengkalan.js"></script>
+    <script src="js/encode/lzw.js"></script>
+    <script src="js/enkripsi/vigenere.js"></script>
+    <script lang="javascript">
+        window.addEventListener('load', ()=> {
+            let txtPlaintext = document.getElementById('txtPlaintext');
+            let btnEncrypt = document.getElementById('btnEncrypt');
+            let txtPublicKey = document.getElementById('txtPublicKey');
+            let txtChipertext = document.getElementById('txtChipertext');
+            btnDecrypt = document.getElementById('btnDecrypt');
+            txtPesan = document.getElementById('txtPesan');
+
+            btnEncrypt.addEventListener('click', ()=>{
+                var vig = new Vigenere();
+                vig.SetPlaintext(txtPlaintext.value);
+                vig.Encrypt();
+                txtPublicKey.value  = vig.GetPublicKey();
+                txtChipertext.value = vig.GetChipertext();
+            });
+
+            btnDecrypt.addEventListener('click', ()=>{
+                var vig = new Vigenere();
+                vig.SetChipertext(txtChipertext.value);
+                vig.SetPublicKey(txtPublicKey.value);
+                vig.Decrypt();
+                txtPesan.value = vig.GetPlaintext();
+            });
+            
+        });
+    </script>
+</body>
+</html>
