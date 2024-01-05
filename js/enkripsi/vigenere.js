@@ -11,7 +11,8 @@ class Vigenere {
         if(otp_modif.length < 4)
             otp_modif = otp_modif.padStart(4, '0');
         var sha1 = new SHA1();
-        this._private_key = sha1.Hash(otp_modif);
+        var md5 = new MD5();
+        this._private_key = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
 
         var sengkalan = new Sengkalan();
         var sengkalan_sentence = sengkalan.Encode(otp);
@@ -78,7 +79,8 @@ class Vigenere {
             otp_modif = otp_modif.padStart(4, '0');
 
         var sha1 = new SHA1();
-        const private_key = sha1.Hash(otp_modif)
+        var md5 = new MD5();
+        const private_key = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
         
         let result = "";
 
