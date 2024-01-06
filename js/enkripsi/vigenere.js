@@ -18,13 +18,16 @@ class Vigenere {
         var sengkalan_sentence = sengkalan.Encode(otp);
 
         var lzw = new LZW();
-        this._public_key = lzw.Encode(sengkalan_sentence);
+        var encode_sengkalan = lzw.Encode(sengkalan_sentence);
+        var caesar = new Caesar();
+        this._public_key = caesar.Encrypt(encode_sengkalan);
 
         console.log("=== GENERATE KEY ===");
         console.log("OTP : "+ otp + "\n");
         console.log("LCM(4, "+ otp + ") : "+ otp_modif + "\n");
         console.log("Private Key : "+ this._private_key + "\n");
         console.log("Sengkalan : "+ sengkalan_sentence + "\n");
+        console.log("Encode LZW : "+ encode_sengkalan + "\n");
         console.log("Public Key : "+ this._public_key + "\n");
     }
 
@@ -68,8 +71,10 @@ class Vigenere {
     }
 
     Decrypt() {
+        var caesar = new Caesar();
+        var decrypt_public_key = caesar.Decrypt(this._public_key);
         var lzw = new LZW();
-        var sengkalan_sentence = lzw.Decode(this._public_key);
+        var sengkalan_sentence = lzw.Decode(decrypt_public_key);
         var sengkalan = new Sengkalan();
         var origin_key = sengkalan.Decode(sengkalan_sentence);
 
@@ -92,6 +97,7 @@ class Vigenere {
         
         console.log("=== DECRYPT ===")
         console.log("Public Key : "+this._public_key);
+        console.log("Decrypt Caesar : "+decrypt_public_key);
         console.log("Chipertext : "+this._chipertext);
         console.log("Sengkalan : "+sengkalan_sentence);
         console.log("Origin Key (OTP) : "+origin_key);

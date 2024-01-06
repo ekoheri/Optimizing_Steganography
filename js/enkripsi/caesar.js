@@ -17,7 +17,7 @@ class Caesar {
     
     Encrypt(message, shift_start = 1) {
         var kunci = this._key_fibbo(message, shift_start);
-        console.log(kunci);
+        //console.log(kunci);
         let result = '';
         for (var i = 0; i < message.length; i++) {
             const c = message.charAt(i);
