@@ -39,7 +39,6 @@ class Steganography {
 
     Inject() {
         var img = this._image_cover;
-
         var vig = new Vigenere();
         vig.SetPlaintext(this._plaintext);
         vig.Encrypt();
