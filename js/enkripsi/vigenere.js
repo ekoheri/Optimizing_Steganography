@@ -13,6 +13,7 @@ class Vigenere {
         var sha1 = new SHA1();
         var md5 = new MD5();
         var hash = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
+        //add reverse
         var reverse = new Reverse();
         this._private_key = reverse.Encrypt(hash);
 

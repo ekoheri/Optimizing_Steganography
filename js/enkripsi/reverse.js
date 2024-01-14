@@ -8,7 +8,6 @@ class Reverse {
         }
         return result;
     }
-
     Decrypt(message) {
         let result = "";
         var len = message.length - 1;
