@@ -12,7 +12,9 @@ class Vigenere {
             otp_modif = otp_modif.padStart(4, '0');
         var sha1 = new SHA1();
         var md5 = new MD5();
-        this._private_key = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
+        var hash = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
+        var reverse = new Reverse();
+        this._private_key = reverse.Encrypt(hash);
 
         var sengkalan = new Sengkalan();
         var sengkalan_sentence = sengkalan.Encode(otp);
@@ -25,6 +27,7 @@ class Vigenere {
         console.log("=== GENERATE KEY ===");
         console.log("OTP : "+ otp + "\n");
         console.log("LCM(4, "+ otp + ") : "+ otp_modif + "\n");
+        console.log("Hash Key : "+hash);
         console.log("Private Key : "+ this._private_key + "\n");
         console.log("Sengkalan : "+ sengkalan_sentence + "\n");
         console.log("Encode LZW : "+ encode_sengkalan + "\n");
@@ -85,7 +88,9 @@ class Vigenere {
 
         var sha1 = new SHA1();
         var md5 = new MD5();
-        const private_key = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
+        var hash = sha1.Hash(otp_modif) + md5.Hash(otp_modif);
+        var reverse = new Reverse();
+        const private_key = reverse.Encrypt(hash);
         
         let result = "";
 
@@ -102,6 +107,7 @@ class Vigenere {
         console.log("Sengkalan : "+sengkalan_sentence);
         console.log("Origin Key (OTP) : "+origin_key);
         console.log("LCM(4, "+origin_key+") : "+otp_modif);
+        console.log("Hash Key : "+hash);
         console.log("Private Key : "+private_key);
         console.log("Plaintext : "+result);
 

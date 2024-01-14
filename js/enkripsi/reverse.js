@@ -1,22 +1,20 @@
 class Reverse {
-    Encrypt(pesan, kunci) {
+    Encrypt(message) {
         let result = "";
-        var len = pesan.length - 1;
+        var len = message.length - 1;
         for(var i = len; i > -1; i--){
-            const c = pesan.charAt(i);
-            const k = kunci.charAt(1);
-            result += String.fromCharCode((c.charCodeAt(0)+k.charCodeAt(0)) % 256);
+            const c = message.charAt(i);
+            result += String.fromCharCode(c.charCodeAt(0));
         }
         return result;
     }
 
-    Decrypt(pesan, kunci) {
+    Decrypt(message) {
         let result = "";
-        var len = pesan.length - 1;
+        var len = message.length - 1;
         for(var i = len; i > -1; i--){
             const c = pesan.charAt(i);
-            const k = kunci.charAt(1);
-            result += String.fromCharCode((c.charCodeAt(0)-k.charCodeAt(0)) % 256);
+            result += String.fromCharCode(c.charCodeAt(0));
         }
         return result;
     }
